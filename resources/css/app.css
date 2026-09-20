@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* muzarwa — sampled from the brand mark */
+    --color-cream: #d3cab9;
+    --color-cream-light: #ede7dc;
+    --color-ink: #3e3c38;
+    --color-brand: #2a5c38;
+    --color-brand-dark: #1f4a2c;
+    --color-brand-soft: #3b6547;
+    --color-chili: #bd4b2d;
+    --color-mango: #ca9636;
+    --color-mango-dark: #b07f28;
+
+    --color-teal-50: #e8f0ea;
+    --color-teal-100: #d4e5d8;
+    --color-teal-200: #a8cdb4;
+    --color-teal-300: #7fb392;
+    --color-teal-400: #5a916c;
+    --color-teal-500: #3b6547;
+    --color-teal-600: #2a5c38;
+    --color-teal-700: #2a5c38;
+    --color-teal-800: #1f4a2c;
+    --color-teal-900: #163824;
+}
