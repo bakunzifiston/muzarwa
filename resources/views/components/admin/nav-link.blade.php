@@ -1,6 +1,7 @@
 @props([
     'active' => false,
     'href' => '#',
+    'icon' => null,
 ])
 
 <a
@@ -10,5 +11,8 @@
         'admin-nav-link-active' => $active,
     ]) }}
 >
-    {{ $slot }}
+    @if ($icon)
+        <x-admin.nav-icon :name="$icon" />
+    @endif
+    <span>{{ $slot }}</span>
 </a>

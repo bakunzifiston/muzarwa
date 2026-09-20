@@ -16,7 +16,6 @@ use App\Models\Sale;
 use App\Models\SaleItem;
 use App\Models\StorefrontGalleryAlbum;
 use App\Models\StorefrontGalleryPhoto;
-use App\Models\StorefrontVideo;
 use App\Services\SaleWorkflowService;
 use App\Services\StorefrontCheckoutService;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,12 +32,6 @@ class StorefrontController extends Controller
     {
         $bestSellers = $this->bestSellerProducts(6);
         $bestSellerIds = $bestSellers->pluck('id')->all();
-        $videos = StorefrontVideo::query()
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->latest('id')
-            ->limit(6)
-            ->get();
         $partners = Partner::query()
             ->where('is_active', true)
             ->orderBy('sort_order')
@@ -46,7 +39,7 @@ class StorefrontController extends Controller
             ->get();
         $galleryAlbums = $this->homeGalleryAlbums();
 
-        return view('storefront.home', compact('bestSellers', 'bestSellerIds', 'videos', 'partners', 'galleryAlbums'));
+        return view('storefront.home', compact('bestSellers', 'bestSellerIds', 'partners', 'galleryAlbums'));
     }
 
     public function about(): View
@@ -59,9 +52,9 @@ class StorefrontController extends Controller
         return view('storefront.products');
     }
 
-    public function services(): View
+    public function services(): RedirectResponse
     {
-        return view('storefront.services');
+        return redirect()->to(route('storefront.about').'#partner');
     }
 
     public function gallery(): View
@@ -533,6 +526,18 @@ class StorefrontController extends Controller
     private function fallbackGalleryPhotos(): Collection
     {
         return collect([
+            [
+                'title' => 'Akanovela Chilli Sauce',
+                'image_path' => 'images/storefront/akanovela-chilli-sauce.jpg',
+            ],
+            [
+                'title' => 'Akanovela Chilli Oil',
+                'image_path' => 'images/storefront/akanovela-chilli-oil.jpg',
+            ],
+            [
+                'title' => 'Itunda Passion Fruit Squash',
+                'image_path' => 'images/storefront/itunda-squash.jpg',
+            ],
             [
                 'title' => 'Our team behind every bottle',
                 'image_path' => 'images/storefront/team.png',

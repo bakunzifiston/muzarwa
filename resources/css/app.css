@@ -31,3 +31,42 @@
     --color-teal-800: #1f4a2c;
     --color-teal-900: #163824;
 }
+
+.js-reveal {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+}
+.js-reveal.from-left {
+    transform: translate3d(-2rem, 0, 0);
+}
+.js-reveal.from-right {
+    transform: translate3d(2rem, 0, 0);
+}
+.js-reveal.from-scale {
+    transform: scale(0.96);
+}
+.js-reveal.is-in {
+    animation: muzarwa-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--reveal-delay, 0ms);
+}
+.js-reveal.motion-done {
+    opacity: 1;
+    transform: none;
+    animation: none;
+}
+@keyframes muzarwa-reveal {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js-reveal,
+    .js-reveal.is-in,
+    .js-reveal.motion-done {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}

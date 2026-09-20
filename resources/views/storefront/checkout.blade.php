@@ -14,29 +14,19 @@
             </nav>
             <h1 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Checkout</h1>
             <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                Almost there—tell us where to reach you and where to deliver. You’ll receive confirmation from our team once the order is reviewed.
+                Tell us where to reach you and where to deliver. Our team will confirm the order before payment.
             </p>
-            @unless ($rows->isEmpty())
-                <div class="mt-6 flex flex-wrap gap-4 text-xs font-medium uppercase tracking-[0.12em] text-slate-500">
-                    <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">1 Cart</span>
-                    <span class="rounded-full bg-[#2A5C38] px-3 py-1 text-[#CA9636]/95 ring-1 ring-[#1F4A2C]">2 Checkout</span>
-                    <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">3 Confirmation</span>
-                </div>
-            @endunless
         </div>
     </section>
 
     @if ($rows->isEmpty())
         <div class="mx-auto max-w-7xl px-4 py-12 lg:px-8 lg:py-16">
-            <div class="mx-auto max-w-lg rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-14 text-center shadow-sm ring-1 ring-slate-900/[0.03]">
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-amber-50 text-amber-700" aria-hidden="true">
-                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                </div>
-                <p class="mt-5 text-lg font-semibold text-slate-900">Your cart is empty</p>
-                <p class="mt-2 text-sm text-slate-600">Add products before checkout. You can browse the shop or return home.</p>
+            <div class="mx-auto max-w-lg rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-14 text-center">
+                <p class="text-lg font-semibold text-slate-900">Your cart is empty</p>
+                <p class="mt-2 text-sm text-slate-600">Add products before checkout.</p>
                 <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                    <a href="{{ route('storefront.shop') }}" class="inline-flex items-center justify-center rounded-xl bg-[#2A5C38] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1F4A2C]">Go to shop</a>
-                    <a href="{{ route('storefront.cart') }}" class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50">Back to cart</a>
+                    <a href="{{ route('storefront.shop') }}" class="inline-flex items-center justify-center rounded-xl bg-[#2A5C38] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1F4A2C]">Go to shop</a>
+                    <a href="{{ route('storefront.cart') }}" class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50">Back to cart</a>
                 </div>
             </div>
         </div>
@@ -45,10 +35,10 @@
             <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem]">
                 {{-- Order summary first on mobile --}}
                 <aside class="order-1 lg:order-2">
-                    <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-900/[0.04] lg:sticky lg:top-[5.25rem]">
-                        <div class="border-b border-slate-100 bg-gradient-to-br from-[#2A5C38] to-[#163824] px-5 py-5 text-white">
-                            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#CA9636]/90">Your order</p>
-                            <p class="mt-1 text-lg font-semibold">Summary</p>
+                    <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white lg:sticky lg:top-[5.25rem]">
+                        <div class="border-b border-slate-100 px-5 py-5">
+                            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Your order</p>
+                            <p class="mt-1 text-lg font-semibold text-slate-900">Summary</p>
                         </div>
                         <div class="max-h-[min(50vh,24rem)] space-y-3 overflow-y-auto px-5 py-4 lg:max-h-none lg:overflow-visible">
                             @foreach ($rows as $row)
@@ -146,7 +136,7 @@
                             </div>
                         @endif
 
-                        <fieldset class="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm ring-1 ring-slate-900/[0.03] sm:p-6">
+                        <fieldset class="rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6">
                             <legend class="px-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#2A5C38]">Contact</legend>
                             <p class="mt-3 text-sm text-slate-600">We use this information to confirm payment and coordinate delivery.</p>
                             <div class="mt-5 grid gap-4 sm:grid-cols-2">
@@ -201,7 +191,7 @@
                             </div>
                         </fieldset>
 
-                        <fieldset class="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm ring-1 ring-slate-900/[0.03] sm:p-6">
+                        <fieldset class="rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6">
                             <legend class="px-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#2A5C38]">Delivery</legend>
                             <p class="mt-3 text-sm text-slate-600">Full delivery location helps our logistics team estimate timing and courier handoff.</p>
                             <div class="mt-5 space-y-4">
@@ -236,16 +226,13 @@
                             </div>
                         </fieldset>
 
-                        <div class="flex flex-col gap-4 rounded-2xl border border-[#2A5C38]/20 bg-gradient-to-br from-[#2A5C38]/[0.07] to-[#163824]/[0.05] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-                            <div class="flex gap-3 text-sm text-slate-700">
-                                <svg class="h-8 w-8 shrink-0 text-[#2A5C38]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                                <p>No payment is captured on this page. Submitting sends your cart and details to muzarwa for review—we’ll reply with confirmation and payment options (MTN Mobile Money, Airtel Money, bank transfer, or Visa / Mastercard).</p>
-                            </div>
+                        <div class="rounded-2xl border border-slate-200/90 bg-[#f8fafc] px-5 py-4 text-sm text-slate-700">
+                            <p>No payment is captured on this page. Submitting sends your details to muzarwa for review. We’ll reply with confirmation and payment options.</p>
                         </div>
 
                         <button
                             type="submit"
-                            class="w-full rounded-xl bg-[#CA9636] px-6 py-3.5 text-sm font-semibold text-[#3E3C38] shadow-md transition hover:bg-[#B07F28] active:scale-[0.99] sm:w-auto sm:min-w-[14rem]"
+                            class="w-full rounded-xl bg-[#CA9636] px-6 py-3.5 text-sm font-semibold text-[#3E3C38] hover:bg-[#B07F28] sm:w-auto sm:min-w-[14rem]"
                         >
                             Place order request · RWF {{ number_format((float) $subtotal, 2) }}
                         </button>

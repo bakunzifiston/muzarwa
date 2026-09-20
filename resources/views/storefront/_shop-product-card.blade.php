@@ -13,8 +13,8 @@
 @endphp
 
 @if ($layout === 'grid')
-    <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-900/[0.04] transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-        <div class="relative aspect-[4/5] overflow-hidden bg-slate-100">
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
+        <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
             @if ($product->image_path)
                 <img
                     src="{{ asset('storage/' . $product->image_path) }}"
@@ -23,7 +23,7 @@
                     height="750"
                     loading="lazy"
                     decoding="async"
-                    class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                    class="h-full w-full object-cover"
                 >
             @else
                 <div class="flex h-full w-full items-center justify-center text-sm text-slate-500">No image</div>
@@ -92,7 +92,7 @@
         </div>
     </article>
 @else
-    <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-900/[0.04] transition duration-300 hover:shadow-md md:flex-row">
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white md:flex-row">
         <div class="relative h-56 shrink-0 overflow-hidden bg-slate-100 md:h-auto md:w-56 lg:w-64">
             @if ($product->image_path)
                 <img
@@ -102,7 +102,7 @@
                     height="500"
                     loading="lazy"
                     decoding="async"
-                    class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] md:aspect-[4/5]"
+                    class="h-full w-full object-cover md:aspect-[4/3]"
                 >
             @else
                 <div class="flex h-full min-h-[14rem] w-full items-center justify-center text-sm text-slate-500">No image</div>

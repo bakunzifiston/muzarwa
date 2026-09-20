@@ -1,17 +1,17 @@
 <x-layouts.storefront title="Order confirmed">
     <div class="mx-auto max-w-2xl px-4 py-16 lg:px-8 lg:py-24">
         @if (session('status'))
-            <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900" role="status">
+            <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800" role="status">
                 {{ session('status') }}
             </div>
         @endif
 
         <h1 class="mt-6 text-3xl font-bold tracking-tight text-slate-900">Thank you for your order</h1>
         <p class="mt-3 text-sm leading-relaxed text-slate-600">
-            Your request was saved in our system. Keep this reference for follow-up:
+            Your request was saved. Keep this reference for follow-up:
         </p>
 
-        <dl class="mt-8 space-y-3 rounded-2xl border border-slate-200 bg-white p-6 text-sm">
+        <dl class="mt-8 space-y-3 rounded-2xl border border-slate-200/90 bg-white p-6 text-sm">
             <div class="flex justify-between gap-4">
                 <dt class="text-slate-500">Order reference</dt>
                 <dd class="font-semibold text-[#2A5C38]">{{ $sale->sales_id }}</dd>

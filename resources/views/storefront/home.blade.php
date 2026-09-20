@@ -1,46 +1,5 @@
 <x-layouts.storefront title="Home" :seo-title="config('brand.seo_title')" :seo-description="config('brand.seo_description')">
     <div id="storefront-home">
-        <style>
-            #storefront-home .hero-slide {
-                animation: storefrontHeroFade 15s infinite;
-                opacity: 0;
-                will-change: opacity;
-            }
-
-            #storefront-home .hero-slide:nth-child(1) {
-                animation-delay: 0s;
-            }
-
-            #storefront-home .hero-slide:nth-child(2) {
-                animation-delay: 5s;
-            }
-
-            #storefront-home .hero-slide:nth-child(3) {
-                animation-delay: 10s;
-            }
-
-            @keyframes storefrontHeroFade {
-                0%,
-                28% {
-                    opacity: 1;
-                }
-                33%,
-                100% {
-                    opacity: 0;
-                }
-            }
-
-            @media (prefers-reduced-motion: reduce) {
-                #storefront-home .hero-slide {
-                    animation: none !important;
-                    opacity: 0;
-                }
-                #storefront-home .hero-slide:nth-child(1) {
-                    opacity: 1;
-                }
-            }
-        </style>
-
         @if (session('status'))
             <div class="border-b border-emerald-200 bg-emerald-50 px-4 py-3 text-center text-sm font-medium text-emerald-800" role="status">
                 {{ session('status') }}
@@ -48,44 +7,14 @@
         @endif
 
         {{-- Hero --}}
-        <section class="relative overflow-hidden text-white">
-            <div class="absolute inset-0">
-                <img
-                    src="{{ asset('images/storefront/team.png') }}"
-                    alt=""
-                    width="1920"
-                    height="1080"
-                    fetchpriority="high"
-                    decoding="async"
-                    class="hero-slide pointer-events-none absolute inset-0 h-full w-full object-cover brightness-[1.06] contrast-[1.04]"
-                    aria-hidden="true"
-                >
-                <img
-                    src="{{ asset('images/storefront/award.png') }}"
-                    alt=""
-                    width="1920"
-                    height="1080"
-                    loading="lazy"
-                    decoding="async"
-                    class="hero-slide pointer-events-none absolute inset-0 h-full w-full object-cover brightness-[1.06] contrast-[1.04]"
-                    aria-hidden="true"
-                >
-                <img
-                    src="{{ asset('images/storefront/pitching.png') }}"
-                    alt=""
-                    width="1920"
-                    height="1080"
-                    loading="lazy"
-                    decoding="async"
-                    class="hero-slide pointer-events-none absolute inset-0 h-full w-full object-cover brightness-[1.06] contrast-[1.04]"
-                    aria-hidden="true"
-                >
-            </div>
-            <div class="absolute inset-0 bg-black/30" aria-hidden="true"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" aria-hidden="true"></div>
+        <section class="relative overflow-hidden bg-[#2A5C38] text-white">
+            <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#CA9636]/15 blur-3xl" aria-hidden="true"></div>
+            <div class="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-white/5 blur-3xl" aria-hidden="true"></div>
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#163824]/40 via-transparent to-[#1F4A2C]/50" aria-hidden="true"></div>
+            <x-storefront.banner-spice />
 
-            <div class="relative mx-auto flex min-h-[min(88vh,44rem)] max-w-7xl flex-col justify-center px-4 py-20 sm:py-24 lg:px-8 lg:py-28">
-                <div class="max-w-3xl">
+            <div class="relative mx-auto flex min-h-[min(72vh,36rem)] max-w-7xl flex-col justify-center px-4 py-20 sm:py-24 lg:px-8 lg:py-28">
+                <div class="js-hero-animate max-w-3xl">
                     <p class="text-sm font-medium uppercase tracking-[0.2em] text-[#CA9636]">Rwamagana, Rwanda</p>
                     <h1 class="mt-4 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.25rem]">
                         Taste the Passion. Fuel Your Flavour.
@@ -123,11 +52,6 @@
                         @endguest
                     </div>
                 </div>
-
-                <p class="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/55 sm:bottom-8">
-                    <span class="sr-only">Background rotates through three photos.</span>
-                    <span aria-hidden="true">· · ·</span>
-                </p>
             </div>
         </section>
 
@@ -135,29 +59,38 @@
         {{-- Product highlights --}}
         <section class="border-b border-[#2A5C38]/10 bg-gradient-to-b from-[#E8F0EA] via-[#EEF3EC] to-[#F4F1EA]">
             <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
-                <div class="mx-auto max-w-2xl text-center">
+                <div class="mx-auto max-w-2xl text-center" data-animate>
                     <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Crafted for flavour</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Product highlights</h2>
                     <p class="mt-3 text-sm leading-relaxed text-slate-600">A Rwandan food brand built around chilli, fruit, and community.</p>
                 </div>
-                <div class="mt-12 grid gap-6 md:grid-cols-3">
-                    <article class="rounded-2xl border border-[#2A5C38]/15 bg-white p-8 shadow-sm ring-1 ring-[#2A5C38]/10">
-                        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#2A5C38]">Origin</p>
-                        <h3 class="mt-3 text-xl font-bold text-slate-900">Crafted in Rwanda</h3>
-                        <p class="mt-3 text-sm leading-relaxed text-slate-600">Made using carefully selected ingredients sourced from Rwanda.</p>
-                    </article>
-                    <article class="rounded-2xl border border-[#CA9636]/30 bg-white p-8 shadow-sm ring-1 ring-[#CA9636]/20">
-                        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#BD4B2D]">Heat</p>
-                        <h3 class="mt-3 text-xl font-bold text-slate-900">Akanovela Chilli Range</h3>
-                        <p class="mt-3 text-sm leading-relaxed text-slate-600">Bold flavour, balanced heat, and versatile everyday use.</p>
-                    </article>
-                    <article class="rounded-2xl border border-[#2A5C38]/15 bg-white p-8 shadow-sm ring-1 ring-[#2A5C38]/10">
-                        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#CA9636]">Refresh</p>
-                        <h3 class="mt-3 text-xl font-bold text-slate-900">Natural Fruit Products</h3>
-                        <p class="mt-3 text-sm leading-relaxed text-slate-600">Refreshing products made from real fruit.</p>
-                    </article>
+                <div class="mt-12 grid gap-6 md:grid-cols-3" data-stagger>
+                    <a href="{{ route('storefront.products') }}#akanovela-chilli-sauce" class="group overflow-hidden rounded-2xl border border-[#2A5C38]/15 bg-white shadow-sm ring-1 ring-[#2A5C38]/10 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <x-storefront.product-shot src="images/storefront/akanovela-chilli-sauce.jpg" alt="Akanovela Chilli Sauce" :cover="true" class="aspect-square" />
+                        <div class="p-6">
+                            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#BD4B2D]">Heat</p>
+                            <h3 class="mt-3 text-xl font-bold text-slate-900">Akanovela Chilli Sauce</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-slate-600">Bold flavour, balanced heat, and versatile everyday use.</p>
+                        </div>
+                    </a>
+                    <a href="{{ route('storefront.products') }}#akanovela-chilli-oil" class="group overflow-hidden rounded-2xl border border-[#CA9636]/30 bg-white shadow-sm ring-1 ring-[#CA9636]/20 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <x-storefront.product-shot src="images/storefront/akanovela-chilli-oil.jpg" alt="Akanovela Chilli Oil" :cover="true" class="aspect-square" />
+                        <div class="p-6">
+                            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#CA9636]">Oil</p>
+                            <h3 class="mt-3 text-xl font-bold text-slate-900">Akanovela Chilli Oil</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-slate-600">Aromatic heat for pizza, pasta, grilled meat, and finishing dishes.</p>
+                        </div>
+                    </a>
+                    <a href="{{ route('storefront.products') }}#passion-fruit-juice" class="group overflow-hidden rounded-2xl border border-[#2A5C38]/15 bg-white shadow-sm ring-1 ring-[#2A5C38]/10 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <x-storefront.product-shot src="images/storefront/itunda-squash.jpg" alt="Itunda passion fruit squash" :cover="true" class="aspect-square" />
+                        <div class="p-6">
+                            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#2A5C38]">Refresh</p>
+                            <h3 class="mt-3 text-xl font-bold text-slate-900">Itunda Passion Fruit</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-slate-600">Refreshing fruit flavour made from carefully selected passion fruit.</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="mt-12">
+                <div class="mt-12" data-animate>
                     <p class="text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Quick product links</p>
                     <div class="mt-5 flex flex-wrap justify-center gap-3">
                         <a href="{{ route('storefront.products') }}#akanovela-chilli-sauce" class="rounded-full bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1F4A2C]">Akanovela Chilli Sauce</a>
@@ -172,14 +105,14 @@
         {{-- Best sellers --}}
         <section class="border-y border-[#2A5C38]/10 bg-gradient-to-b from-[#e4f0f2] via-[#ecf5f6] to-[#f2f8f9]">
             <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
-                <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-animate>
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Customer favorites</p>
                         <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">Best sellers</h2>
                     </div>
                     <a href="{{ route('storefront.shop') }}" class="text-sm font-semibold text-[#2A5C38] transition hover:text-[#1F4A2C]">Shop full catalog →</a>
                 </div>
-                <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
                     @forelse ($bestSellers as $product)
                         @include('storefront._shop-product-card', ['product' => $product, 'layout' => 'grid', 'bestSellerIds' => $bestSellerIds])
                     @empty
@@ -195,14 +128,14 @@
         <section class="border-y border-slate-200/60 bg-gradient-to-b from-white via-[#fafcfd] to-[#EEF3EC]">
             <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
                 <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-                    <div class="min-w-0">
+                    <div class="min-w-0" data-animate="left">
                         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Why muzarwa</p>
                         <h2 class="mt-3 max-w-xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Quality, sourcing, and packaging you can stand behind</h2>
                         <p class="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
                             Standardized recipes, rigorous hygiene, and partnerships with local farmers mean reliable flavor for households and retail shelves alike.
                         </p>
 
-                        <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+                        <ul class="mt-10 grid gap-4 sm:grid-cols-2" data-stagger>
                             <li class="flex gap-4 rounded-2xl border border-slate-200/90 bg-white/90 p-5 shadow-sm ring-1 ring-slate-900/[0.03] transition duration-200 hover:border-[#2A5C38]/25 hover:shadow-md">
                                 <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2A5C38] text-white shadow-md shadow-[#2A5C38]/20">
                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.25 7.25a1 1 0 01-1.415 0l-3.25-3.25a1 1 0 111.414-1.42l2.543 2.544 6.543-6.544a1 1 0 011.415 0z" clip-rule="evenodd" /></svg>
@@ -246,128 +179,30 @@
                             <a href="{{ route('storefront.contact') }}" class="inline-flex rounded-lg border border-slate-300/90 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-[#2A5C38]/35 hover:bg-[#f7fbfc] active:scale-[0.98]">Request wholesale info</a>
                         </div>
                     </div>
-                    <figure class="overflow-hidden rounded-2xl border border-[#2A5C38]/15 bg-[#2A5C38]/[0.03] shadow-xl shadow-slate-900/10 ring-1 ring-[#2A5C38]/10 transition duration-500 hover:shadow-2xl">
+                    <figure class="overflow-hidden rounded-2xl bg-[#c0c6d4] shadow-xl shadow-slate-900/10 ring-1 ring-black/5" data-animate="right">
                         <img
-                            src="{{ asset('images/storefront/team.png') }}"
-                            alt="muzarwa team with chilli products"
-                            width="960"
-                            height="720"
+                            src="{{ asset('images/storefront/product-range.jpg') }}"
+                            alt="muzarwa Itunda squash and Akanovela chilli range"
+                            width="768"
+                            height="714"
                             loading="lazy"
                             decoding="async"
-                            class="aspect-[4/3] h-full w-full object-cover transition duration-700 hover:scale-[1.02]"
+                            class="h-full w-full object-contain object-bottom"
                         >
                     </figure>
                 </div>
             </div>
         </section>
 
-        {{-- Videos --}}
-        <section class="border-t border-[#2A5C38]/10 bg-gradient-to-b from-[#d8e8eb] via-[#e6f1f3] to-[#f1f7f8]">
-            <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
-                <div class="max-w-2xl">
-                    <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Behind the bottle</p>
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">Short videos</h2>
-                    <p class="mt-3 text-sm leading-relaxed text-slate-600">Production highlights, events, and product moments from muzarwa.</p>
-                </div>
-                @if ($videos->isEmpty())
-                    <div class="mt-10 rounded-2xl border border-dashed border-[#2A5C38]/25 bg-white/90 p-10 text-center text-sm text-slate-600 shadow-sm">
-                        Videos will appear here after upload from Admin → E-Commerce → Catalog → Videos.
-                    </div>
-                @else
-                    @php
-                        $featuredVideo = $videos->first();
-                        $sideVideos = $videos->skip(1)->take(2);
-                        $extraVideos = $videos->skip(3);
-                    @endphp
-
-                    <div class="mt-12 grid gap-6 lg:grid-cols-3">
-                        <article class="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-900/[0.04] transition duration-300 hover:shadow-lg lg:col-span-2">
-                            <div class="overflow-hidden rounded-xl bg-slate-900">
-                                <video
-                                    autoplay
-                                    muted
-                                    loop
-                                    playsinline
-                                    controls
-                                    preload="auto"
-                                    class="storefront-home-autoplay-video aspect-video w-full object-cover transition duration-300 group-hover:brightness-[1.03]"
-                                >
-                                    <source src="{{ asset('storage/' . $featuredVideo->video_path) }}">
-                                    Your browser does not support HTML video.
-                                </video>
-                            </div>
-                            <h3 class="mt-4 text-sm font-semibold text-slate-900">{{ $featuredVideo->title }}</h3>
-                        </article>
-
-                        <div class="space-y-6">
-                            @foreach ($sideVideos as $video)
-                                <article class="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-900/[0.04] transition duration-300 hover:shadow-lg">
-                                    <div class="overflow-hidden rounded-xl bg-slate-900">
-                                        <video autoplay muted loop playsinline controls preload="auto" class="storefront-home-autoplay-video aspect-video w-full object-cover transition duration-300 group-hover:brightness-[1.03]">
-                                            <source src="{{ asset('storage/' . $video->video_path) }}">
-                                            Your browser does not support HTML video.
-                                        </video>
-                                    </div>
-                                    <h3 class="mt-4 text-sm font-semibold text-slate-900">{{ $video->title }}</h3>
-                                </article>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    @if ($extraVideos->isNotEmpty())
-                        <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            @foreach ($extraVideos as $video)
-                                <article class="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-900/[0.04] transition duration-300 hover:shadow-lg">
-                                    <div class="overflow-hidden rounded-xl bg-slate-900">
-                                        <video autoplay muted loop playsinline controls preload="auto" class="storefront-home-autoplay-video aspect-video w-full object-cover transition duration-300 group-hover:brightness-[1.03]">
-                                            <source src="{{ asset('storage/' . $video->video_path) }}">
-                                            Your browser does not support HTML video.
-                                        </video>
-                                    </div>
-                                    <h3 class="mt-4 text-sm font-semibold text-slate-900">{{ $video->title }}</h3>
-                                </article>
-                            @endforeach
-                        </div>
-                    @endif
-
-                    <script>
-                        (function () {
-                            var nodes = document.querySelectorAll('#storefront-home .storefront-home-autoplay-video');
-                            if (!nodes.length) return;
-                            function bind(el) {
-                                function tryPlay() {
-                                    var p = el.play();
-                                    if (p && typeof p.catch === 'function') p.catch(function () {});
-                                }
-                                if (el.readyState >= 2) tryPlay();
-                                else el.addEventListener('canplay', tryPlay, { once: true });
-                                if ('IntersectionObserver' in window) {
-                                    var io = new IntersectionObserver(function (entries) {
-                                        entries.forEach(function (e) {
-                                            if (e.isIntersecting) tryPlay();
-                                        });
-                                    }, { threshold: 0.2 });
-                                    io.observe(el);
-                                } else {
-                                    tryPlay();
-                                }
-                            }
-                            nodes.forEach(bind);
-                        })();
-                    </script>
-                @endif
-            </div>
-        </section>
-
         {{-- Gallery --}}
         <section class="border-y border-slate-200/70 bg-[#f8fafc]">
             <div class="mx-auto max-w-7xl px-4 py-14 lg:px-8 lg:py-20">
-                <div class="mx-auto max-w-2xl text-center">
+                <div class="mx-auto max-w-2xl text-center" data-animate>
                     <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Behind the brand</p>
                     <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">Gallery</h2>
                 </div>
                 @if ($galleryAlbums->isNotEmpty())
-                    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
                         @foreach ($galleryAlbums as $album)
                             @include('storefront._gallery-album-card', [
                                 'album' => $album,
@@ -394,12 +229,12 @@
         {{-- Testimonials --}}
         <section class="border-y border-[#CA9636]/25 bg-gradient-to-b from-[#fdf5eb] via-[#fef7ef] to-[#faf0e4]">
             <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
-                <div class="mx-auto max-w-2xl text-center">
+                <div class="mx-auto max-w-2xl text-center" data-animate>
                     <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Sample feedback</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">What Our Customers Say</h2>
                     <p class="mt-3 text-sm text-slate-600">Placeholder notes for the brand voice. Replace these in admin once verified customer quotes are available.</p>
                 </div>
-                <div class="mt-12 grid gap-6 md:grid-cols-3">
+                <div class="mt-12 grid gap-6 md:grid-cols-3" data-stagger>
                     <figure class="flex h-full flex-col rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm">
                         <blockquote class="flex-1 text-sm leading-relaxed text-slate-600">“The chilli sauce has a warm, balanced heat that works well with everyday meals.”</blockquote>
                         <figcaption class="mt-5 text-sm font-semibold text-slate-900">Sample customer note</figcaption>
@@ -419,13 +254,13 @@
         {{-- Partners --}}
         <section class="border-b border-[#2A5C38]/10 bg-gradient-to-b from-[#e8f2f4] to-[#f4f9fa]">
             <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
-                <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-animate>
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Trusted presence</p>
                         <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">Partner supermarkets</h2>
                     </div>
                 </div>
-                <div class="mt-10 flex flex-wrap items-center gap-4">
+                <div class="mt-10 flex flex-wrap items-center gap-4" data-stagger>
                     @foreach ($partners as $partner)
                         @if ($partner->logo_path)
                             @php($logo = '<img src="' . asset('storage/' . $partner->logo_path) . '" alt="' . e($partner->name) . '" title="' . e($partner->name) . '" class="h-12 w-auto max-w-[160px] object-contain">')
@@ -445,7 +280,7 @@
 
         {{-- Closing CTA --}}
         <section class="border-t border-[#1F4A2C] bg-[#2A5C38] px-4 py-16 text-white lg:px-8 lg:py-20">
-            <div class="mx-auto flex max-w-7xl flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+            <div class="mx-auto flex max-w-7xl flex-col items-start gap-8 md:flex-row md:items-center md:justify-between" data-animate>
                 <div class="max-w-xl">
                     <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Taste the passion. Fuel your flavour.</h2>
                     <p class="mt-4 text-sm leading-relaxed text-slate-200 sm:text-base">

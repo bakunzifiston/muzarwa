@@ -5,9 +5,11 @@
 <x-layouts.storefront title="Shop Your Flavour" seo-description="Shop your flavour with muzarwa. Browse the live catalog of chilli and fruit products.">
     {{-- Page header / hero --}}
     <section class="relative overflow-hidden border-b border-[#1F4A2C]/30 bg-[#2A5C38] text-white">
-        <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#CA9636]/10 blur-3xl"></div>
-        <div class="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
-        <div class="relative mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:px-8">
+        <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#CA9636]/15 blur-3xl" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#163824]/40 via-transparent to-[#1F4A2C]/50" aria-hidden="true"></div>
+        <x-storefront.banner-spice />
+        <div class="js-hero-animate relative mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:px-8">
             <nav class="text-xs font-medium text-[#CA9636]/95" aria-label="Breadcrumb">
                 <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <li>
@@ -23,12 +25,13 @@
             <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-100/90 sm:text-base">
                 Crafted for flavour. Made with care. Filter the live catalog, then add what you need to your cart.
             </p>
+            <x-storefront.shop-subnav :on-dark="true" />
         </div>
     </section>
 
     <div class="mx-auto max-w-7xl px-4 py-10 lg:px-8 lg:py-14">
         {{-- Search & filters toolbar --}}
-        <form method="GET" action="{{ route('storefront.shop') }}" class="space-y-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-900/[0.03] sm:p-5">
+        <form method="GET" action="{{ route('storefront.shop') }}" class="space-y-4 rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5">
             <input type="hidden" name="layout" value="{{ $layout }}">
 
             <div class="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
@@ -124,7 +127,7 @@
                     </select>
                 </div>
                 <div class="flex flex-wrap gap-2 lg:col-span-2 lg:justify-end">
-                    <button type="submit" class="inline-flex flex-1 items-center justify-center rounded-xl bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1F4A2C] hover:shadow active:scale-[0.98] sm:flex-none lg:min-w-[7rem]">
+                        <button type="submit" class="inline-flex flex-1 items-center justify-center rounded-xl bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1F4A2C] sm:flex-none lg:min-w-[7rem]">
                         Apply filters
                     </button>
                     <a href="{{ route('storefront.shop', ['layout' => $layout]) }}" class="inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
@@ -135,11 +138,8 @@
         </form>
 
         @if (session('status'))
-            <div class="mt-6 flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 shadow-sm">
-                <span class="mt-0.5 text-emerald-600" aria-hidden="true">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.872l-3.236 4.53L7.53 10.53a.75.75 0 00-1.06 1.061l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
-                </span>
-                <span>{{ session('status') }}</span>
+            <div class="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                {{ session('status') }}
             </div>
         @endif
 
@@ -158,13 +158,13 @@
                 <a href="{{ route('storefront.shop', ['layout' => $layout]) }}" class="mt-6 inline-flex rounded-lg bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1F4A2C]">View all products</a>
             </div>
         @elseif ($layout === 'grid')
-            <div class="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <div class="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3" data-stagger>
                 @foreach ($products as $product)
                     @include('storefront._shop-product-card', ['layout' => 'grid'])
                 @endforeach
             </div>
         @else
-            <div class="mt-8 flex flex-col gap-5">
+            <div class="mt-8 flex flex-col gap-5" data-stagger>
                 @foreach ($products as $product)
                     @include('storefront._shop-product-card', ['layout' => 'list'])
                 @endforeach

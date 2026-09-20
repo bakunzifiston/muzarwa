@@ -12,32 +12,24 @@
             </nav>
             <h1 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Your cart</h1>
             <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                Review your items and quantities before checkout. Continue shopping anytime or proceed when you’re ready.
+                Review your items and quantities before checkout.
             </p>
+            <x-storefront.shop-subnav />
         </div>
     </section>
 
     <div class="mx-auto max-w-7xl px-4 py-10 lg:flex lg:gap-10 lg:px-8 lg:py-14">
         <div class="min-w-0 flex-1">
             @if (session('status'))
-                <div class="mb-6 flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900 shadow-sm">
-                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.872l-3.236 4.53L7.53 10.53a.75.75 0 00-1.06 1.061l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
-                    <span>{{ session('status') }}</span>
-                </div>
+                <div class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">{{ session('status') }}</div>
             @endif
 
             @if ($rows->isEmpty())
-                <div class="rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-16 text-center shadow-sm ring-1 ring-slate-900/[0.03]">
-                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#2A5C38]/10 text-[#2A5C38]" aria-hidden="true">
-                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                    </div>
-                    <p class="mt-6 text-lg font-semibold text-slate-900">Your cart is empty</p>
-                    <p class="mt-2 text-sm text-slate-600">Add chilli sauce, chilli oil, or fruit products from the shop—your selections will appear here.</p>
-                    <a href="{{ route('storefront.shop') }}" class="mt-8 inline-flex items-center rounded-xl bg-[#2A5C38] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1F4A2C] active:scale-[0.98]">
+                <div class="rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-16 text-center">
+                    <p class="text-lg font-semibold text-slate-900">Your cart is empty</p>
+                    <p class="mt-2 text-sm text-slate-600">Add products from the shop and they will appear here.</p>
+                    <a href="{{ route('storefront.shop') }}" class="mt-8 inline-flex rounded-xl bg-[#2A5C38] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1F4A2C]">
                         Browse products
-                    </a>
-                    <a href="{{ route('storefront.home') }}" class="mt-3 block text-center text-sm font-semibold text-[#2A5C38] underline-offset-2 hover:underline">
-                        Back to home
                     </a>
                 </div>
             @else
@@ -53,7 +45,7 @@
                             $exceedsStock = $available > 0 ? $qty > $available : true;
                             $canDec = $qty > 1;
                         @endphp
-                        <li class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-900/[0.04] transition hover:shadow-md">
+                        <li class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
                             <div class="flex flex-col gap-4 p-4 sm:flex-row sm:items-start sm:gap-5 sm:p-5">
                                 <a href="{{ route('storefront.product', $product->id) }}" class="relative shrink-0 overflow-hidden rounded-xl bg-slate-100 ring-1 ring-slate-200/80 transition hover:ring-[#2A5C38]/25 sm:h-28 sm:w-28">
                                     @if ($product->image_path)
@@ -195,10 +187,10 @@
         @if ($rows->isNotEmpty())
             <aside class="mt-10 lg:mt-0 lg:w-[340px] lg:shrink-0">
                 <div class="lg:sticky lg:top-[5.25rem]">
-                    <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-900/[0.04]">
-                        <div class="border-b border-slate-100 bg-gradient-to-br from-[#2A5C38] to-[#163824] px-5 py-5 text-white">
-                            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#CA9636]/90">Summary</p>
-                            <p class="mt-1 text-lg font-semibold">Order totals</p>
+                    <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
+                        <div class="border-b border-slate-100 px-5 py-5">
+                            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Summary</p>
+                            <p class="mt-1 text-lg font-semibold text-slate-900">Order totals</p>
                         </div>
                         <div class="space-y-3 px-5 py-5">
                             @foreach ($rows as $row)
@@ -218,7 +210,7 @@
                             </div>
                             <a
                                 href="{{ route('storefront.checkout') }}"
-                                class="mt-4 flex w-full items-center justify-center rounded-xl bg-[#CA9636] px-5 py-3.5 text-sm font-semibold text-[#3E3C38] shadow-sm transition hover:bg-[#B07F28] active:scale-[0.99]"
+                                class="mt-4 flex w-full items-center justify-center rounded-xl bg-[#CA9636] px-5 py-3.5 text-sm font-semibold text-[#3E3C38] hover:bg-[#B07F28]"
                             >
                                 Proceed to checkout
                             </a>

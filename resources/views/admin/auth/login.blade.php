@@ -6,66 +6,54 @@
     <title>Log In - {{ config('app.name', 'muzarwa') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        .login-split-image {
-            background-image: url('{{ asset('images/storefront/team.png') }}');
-            background-size: cover;
-            background-position: center;
-        }
         .input-success { border-color: #16a34a !important; box-shadow: 0 0 0 1px #16a34a; }
         .input-error   { border-color: #dc2626 !important; box-shadow: 0 0 0 1px #dc2626; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .spinner { animation: spin 0.7s linear infinite; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in-up { animation: fadeInUp 0.4s ease-out both; }
     </style>
 </head>
 
-<body class="h-full bg-cream-light antialiased">
-    {{-- Skip link for keyboard users --}}
+<body class="h-full bg-cream-light text-ink antialiased">
     <a href="#login-form" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand">
         Skip to login form
     </a>
 
-    <div class="flex min-h-full">
-        {{-- Left: Brand imagery (hidden on mobile, shown on lg+) --}}
-        <div class="login-split-image relative hidden w-1/2 lg:block" aria-hidden="true">
-            <div class="absolute inset-0 bg-gradient-to-br from-brand-dark/90 via-brand/75 to-brand-dark/85"></div>
-            <div class="relative flex h-full flex-col justify-between p-10">
-                <a href="{{ route('storefront.home') }}" class="inline-flex rounded-2xl bg-cream-light/95 p-2 shadow-lg">
-                    <x-brand-logo class="h-20 w-auto max-w-[13rem] object-contain" alt="" />
+    <div class="flex min-h-full flex-col lg:flex-row">
+        <aside class="relative overflow-hidden bg-brand text-white lg:flex lg:w-[44%] lg:flex-col">
+            <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-mango/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-white/5 blur-3xl"></div>
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#163824]/40 via-transparent to-brand-dark/50"></div>
+            <x-storefront.banner-spice />
+            <div class="relative h-1 w-full bg-gradient-to-r from-brand via-mango to-chili"></div>
+
+            <div class="js-hero-animate relative flex flex-col justify-between px-6 py-10 sm:px-8 lg:h-full lg:p-10 xl:p-12">
+                <a href="{{ route('storefront.home') }}" class="inline-flex w-fit overflow-hidden rounded-xl bg-cream">
+                    <x-brand-logo class="h-16 w-auto max-w-[12rem] object-contain" alt="muzarwa" />
                 </a>
 
-                <div class="max-w-md">
-                    <blockquote class="text-lg font-medium leading-relaxed text-white/90">
-                        "Taste the Passion. Fuel Your Flavour."
-                    </blockquote>
-                    <p class="mt-3 text-sm text-mango">Rwamagana, Rwanda</p>
+                <div class="mt-8 max-w-md lg:mt-0">
+                    <p class="text-sm font-medium uppercase tracking-[0.2em] text-mango">Rwamagana, Rwanda</p>
+                    <p class="mt-4 text-3xl font-bold leading-tight tracking-tight text-white xl:text-4xl">
+                        Taste the Passion. Fuel Your Flavour.
+                    </p>
+                    <p class="mt-4 text-sm leading-relaxed text-white/75">
+                        Sign in to manage orders, catalog, and operations.
+                    </p>
                 </div>
 
-                <p class="text-xs text-white/40">&copy; {{ date('Y') }} muzarwa. All rights reserved.</p>
+                <p class="mt-8 hidden text-xs text-white/45 lg:block">&copy; {{ date('Y') }} muzarwa. All rights reserved.</p>
             </div>
-        </div>
+        </aside>
 
-        {{-- Right: Login form --}}
-        <div class="flex w-full flex-col items-center justify-center px-4 py-10 sm:px-8 lg:w-1/2">
-            {{-- Mobile logo --}}
-            <a href="{{ route('storefront.home') }}" class="mb-8 lg:hidden">
-                <x-brand-logo class="h-20 w-auto max-w-[13rem] object-contain" />
-            </a>
+        <main class="flex w-full flex-1 flex-col items-center justify-center px-4 py-12 sm:px-8 lg:w-[56%]">
 
-            <div class="w-full max-w-sm">
-                <div class="fade-in-up">
-                    <h1 class="text-2xl font-bold tracking-tight text-slate-900">Welcome back</h1>
-                    <p class="mt-1.5 text-sm text-slate-500">Sign in to access your dashboard.</p>
-                </div>
+            <div class="w-full max-w-md rounded-2xl border border-black/[0.06] bg-white p-7 shadow-sm sm:p-8">
+                <h1 class="text-2xl font-bold tracking-tight text-slate-900">Welcome back</h1>
+                <p class="mt-1.5 text-sm text-slate-500">Sign in to access your dashboard.</p>
 
-                {{-- Global error banner --}}
                 @if ($errors->any())
                     <div
-                        class="fade-in-up mt-6 flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3"
+                        class="mt-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3"
                         role="alert"
                         aria-live="assertive"
                     >
@@ -84,12 +72,11 @@
                     id="login-form"
                     method="POST"
                     action="{{ route('admin.login.store') }}"
-                    class="mt-8 space-y-5"
+                    class="mt-7 space-y-5"
                     novalidate
                 >
                     @csrf
 
-                    {{-- Email / Username field --}}
                     <div>
                         <label for="login" class="mb-1.5 block text-sm font-medium text-slate-700">
                             Email or username
@@ -110,13 +97,12 @@
                                 autofocus
                                 placeholder="you@example.com"
                                 aria-describedby="login-hint"
-                                class="block w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-[#2A5C38] focus:outline-none focus:ring-2 focus:ring-[#2A5C38]/20"
+                                class="block w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                             >
                         </div>
                         <p id="login-hint" class="sr-only">Enter your registered email address or username.</p>
                     </div>
 
-                    {{-- Password field --}}
                     <div>
                         <div class="mb-1.5 flex items-center justify-between">
                             <label for="password" class="block text-sm font-medium text-slate-700">
@@ -124,7 +110,7 @@
                             </label>
                             <a
                                 href="{{ route('storefront.contact') }}"
-                                class="text-xs font-medium text-[#2A5C38] hover:text-[#1F4A2C] focus:outline-none focus:underline"
+                                class="text-xs font-medium text-brand hover:text-brand-dark focus:outline-none focus:underline"
                             >
                                 Forgot password?
                             </a>
@@ -143,28 +129,24 @@
                                 autocomplete="current-password"
                                 placeholder="Enter your password"
                                 aria-describedby="password-caps-warning"
-                                class="block w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-11 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-[#2A5C38] focus:outline-none focus:ring-2 focus:ring-[#2A5C38]/20"
+                                class="block w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-11 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                             >
-                            {{-- Show/hide toggle --}}
                             <button
                                 type="button"
                                 id="toggle-password"
-                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 transition hover:text-slate-600 focus:outline-none focus:text-[#2A5C38]"
+                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 transition hover:text-slate-600 focus:text-brand focus:outline-none"
                                 aria-label="Show password"
                             >
-                                {{-- Eye open (visible when password is hidden) --}}
                                 <svg id="icon-eye-open" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                                     <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd" />
                                 </svg>
-                                {{-- Eye closed (visible when password is shown) --}}
                                 <svg id="icon-eye-closed" class="hidden h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l14.5 14.5a.75.75 0 1 0 1.06-1.06l-1.745-1.745a10.029 10.029 0 0 0 3.3-4.38 1.651 1.651 0 0 0 0-1.185A10.004 10.004 0 0 0 9.999 3a9.956 9.956 0 0 0-4.744 1.194L3.28 2.22ZM7.752 6.69l1.092 1.092a2.5 2.5 0 0 1 3.374 3.373l1.092 1.092a4 4 0 0 0-5.558-5.558Z" clip-rule="evenodd" />
-                                    <path d="M10.748 13.93l2.523 2.523A9.987 9.987 0 0 1 10 17a10.003 10.003 0 0 1-9.336-6.41 1.651 1.651 0 0 1 0-1.186 10.05 10.05 0 0 1 2.839-4.084l2.09 2.09a4 4 0 0 0 5.155 5.52Z" />
+                                    <path d="M10.748 13.93l2.523 2.523A9.987 9.987 0 0 1 10 17a10.003 10.004 0 0 1-9.336-6.41 1.651 1.651 0 0 1 0-1.186 10.05 10.05 0 0 1 2.839-4.084l2.09 2.09a4 4 0 0 0 5.155 5.52Z" />
                                 </svg>
                             </button>
                         </div>
-                        {{-- Caps Lock warning --}}
                         <p
                             id="password-caps-warning"
                             class="mt-1.5 hidden items-center gap-1.5 text-xs font-medium text-amber-600"
@@ -178,25 +160,22 @@
                         </p>
                     </div>
 
-                    {{-- Remember me --}}
                     <div class="flex items-center gap-2.5">
                         <input
                             id="remember"
                             name="remember"
                             type="checkbox"
                             value="1"
-                            class="h-4 w-4 rounded border-slate-300 text-[#2A5C38] focus:ring-[#2A5C38]/30"
+                            class="h-4 w-4 rounded border-slate-300 text-brand focus:ring-brand/30"
                         >
                         <label for="remember" class="text-sm text-slate-600">Remember me</label>
                     </div>
 
-                    {{-- Submit --}}
                     <button
                         id="login-submit"
                         type="submit"
-                        class="group relative flex w-full items-center justify-center gap-2 rounded-lg bg-[#2A5C38] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-[#1F4A2C] focus:outline-none focus:ring-2 focus:ring-[#2A5C38] focus:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60"
+                        class="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60"
                     >
-                        {{-- Spinner (hidden by default) --}}
                         <svg id="login-spinner" class="spinner hidden h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -204,12 +183,12 @@
                         <span id="login-text">Log In</span>
                     </button>
                 </form>
-
-                <p class="mt-8 text-center text-xs text-slate-400">
-                    <a href="{{ route('storefront.home') }}" class="font-medium text-[#2A5C38] hover:text-[#1F4A2C] focus:outline-none focus:underline">&larr; Back to website</a>
-                </p>
             </div>
-        </div>
+
+            <p class="mt-6 text-center text-sm text-slate-500">
+                <a href="{{ route('storefront.home') }}" class="font-medium text-brand hover:text-brand-dark focus:outline-none focus:underline">&larr; Back to website</a>
+            </p>
+        </main>
     </div>
 
     <script>
@@ -225,7 +204,6 @@
         const spinnerEl   = document.getElementById('login-spinner');
         const textEl      = document.getElementById('login-text');
 
-        // --- Show / Hide password ---
         toggleBtn.addEventListener('click', function () {
             const isHidden = passInput.type === 'password';
             passInput.type = isHidden ? 'text' : 'password';
@@ -235,7 +213,6 @@
             passInput.focus();
         });
 
-        // --- Caps Lock detection ---
         function checkCaps(e) {
             if (typeof e.getModifierState === 'function') {
                 const on = e.getModifierState('CapsLock');
@@ -246,7 +223,6 @@
         passInput.addEventListener('keyup', checkCaps);
         passInput.addEventListener('keydown', checkCaps);
 
-        // --- Real-time inline validation ---
         function setValid(el) {
             el.classList.remove('input-error');
             el.classList.add('input-success');
@@ -275,7 +251,6 @@
             v.length >= 1 ? setValid(this) : setInvalid(this);
         });
 
-        // --- Loading state on submit ---
         form.addEventListener('submit', function () {
             submitBtn.disabled = true;
             spinnerEl.classList.remove('hidden');

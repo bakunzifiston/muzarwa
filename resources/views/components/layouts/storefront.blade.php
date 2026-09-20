@@ -45,7 +45,7 @@
 </head>
 <body class="bg-cream-light text-ink antialiased">
     <div class="min-h-screen">
-        <header class="sticky top-0 z-[100] border-b border-cream bg-cream-light/90 backdrop-blur">
+        <header class="sticky top-0 z-[100] border-b border-black/[0.06] bg-cream">
             <div class="h-1 w-full bg-gradient-to-r from-brand via-mango to-chili"></div>
             <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 lg:px-8">
                 <a href="{{ route('storefront.home') }}" class="flex shrink-0 items-center">
@@ -54,8 +54,6 @@
 
                 <nav class="hidden items-center gap-5 text-sm font-medium text-ink/80 lg:flex" aria-label="Primary">
                     <x-storefront.nav-links />
-                    <a href="{{ route('storefront.cart') }}" class="hover:text-brand {{ request()->routeIs('storefront.cart') ? 'font-semibold text-brand' : '' }}">Cart</a>
-                    <a href="{{ route('storefront.wishlist') }}" class="hover:text-brand {{ request()->routeIs('storefront.wishlist') ? 'font-semibold text-brand' : '' }}">Wishlist</a>
                 </nav>
 
                 <div class="flex items-center gap-2">
@@ -77,8 +75,6 @@
                         <nav class="absolute right-0 z-[120] mt-2 w-56 rounded-xl border border-cream bg-white p-3 text-sm font-medium shadow-lg" aria-label="Mobile">
                             <div class="flex flex-col gap-2">
                                 <x-storefront.nav-links link-class="rounded-lg px-2 py-1.5 hover:bg-cream-light" />
-                                <a href="{{ route('storefront.cart') }}" class="rounded-lg px-2 py-1.5 hover:bg-cream-light">Cart</a>
-                                <a href="{{ route('storefront.wishlist') }}" class="rounded-lg px-2 py-1.5 hover:bg-cream-light">Wishlist</a>
                             </div>
                         </nav>
                     </details>
@@ -91,9 +87,9 @@
         </main>
 
         <footer class="mt-16 border-t border-brand-dark bg-brand text-white">
-            <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-4 lg:px-8">
+            <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-4 lg:px-8" data-stagger>
                 <div>
-                    <x-brand-logo class="mb-4 h-20 w-auto max-w-[12rem] rounded-xl bg-cream-light object-contain p-1.5" alt="muzarwa" />
+                    <x-brand-logo class="mb-4 h-20 w-auto max-w-[12rem] rounded-xl bg-cream object-contain p-1.5" alt="muzarwa" />
                     <h3 class="text-base font-semibold lowercase tracking-wide">{{ config('brand.name') }}</h3>
                     <p class="mt-3 text-sm leading-relaxed text-slate-200">{{ config('brand.blurb') }}</p>
                 </div>
@@ -103,8 +99,9 @@
                         <li><a href="{{ route('storefront.home') }}" class="hover:text-mango">Home</a></li>
                         <li><a href="{{ route('storefront.about') }}" class="hover:text-mango">About Us</a></li>
                         <li><a href="{{ route('storefront.products') }}" class="hover:text-mango">Products</a></li>
-                        <li><a href="{{ route('storefront.services') }}" class="hover:text-mango">Services</a></li>
                         <li><a href="{{ route('storefront.shop') }}" class="hover:text-mango">Shop</a></li>
+                        <li><a href="{{ route('storefront.cart') }}" class="hover:text-mango">Cart</a></li>
+                        <li><a href="{{ route('storefront.wishlist') }}" class="hover:text-mango">Wishlist</a></li>
                         <li><a href="{{ route('storefront.contact') }}" class="hover:text-mango">Contact</a></li>
                     </ul>
                 </div>

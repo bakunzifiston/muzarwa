@@ -5,28 +5,43 @@
         $inquiryUrl = route('storefront.contact') . '?subject=' . urlencode('Product Inquiry: ' . $details->name);
     @endphp
 
-    <section class="mx-auto max-w-6xl px-4 py-12 lg:px-8">
+    <section class="border-b border-slate-200/80 bg-[#f8fafc]">
+        <div class="mx-auto max-w-7xl px-4 py-10 sm:py-12 lg:px-8">
+            <nav class="text-xs font-medium text-[#2A5C38]" aria-label="Breadcrumb">
+                <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <li><a href="{{ route('storefront.home') }}" class="text-slate-600 transition hover:text-[#2A5C38]">Home</a></li>
+                    <li class="text-slate-400" aria-hidden="true">/</li>
+                    <li><a href="{{ route('storefront.shop') }}" class="text-slate-600 transition hover:text-[#2A5C38]">Shop</a></li>
+                    <li class="text-slate-400" aria-hidden="true">/</li>
+                    <li class="font-semibold text-slate-900" aria-current="page">{{ $details->name }}</li>
+                </ol>
+            </nav>
+            <h1 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ $details->name }}</h1>
+            <x-storefront.shop-subnav />
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-10 lg:px-8 lg:py-14">
         @if (session('status'))
-            <div class="mb-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{{ session('status') }}</div>
+            <div class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">{{ session('status') }}</div>
         @endif
 
-        <div class="grid gap-8 lg:grid-cols-2">
-            <div class="rounded-2xl border border-slate-200 bg-white p-8">
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
                 @if ($details->image_path)
-                    <img src="{{ asset('storage/' . $details->image_path) }}" alt="{{ $details->name }}" class="h-72 w-full rounded-xl object-cover">
+                    <img src="{{ asset('storage/' . $details->image_path) }}" alt="{{ $details->name }}" class="aspect-square w-full object-cover">
                 @else
-                    <div class="flex h-72 items-center justify-center rounded-xl bg-gradient-to-br from-[#fef7ef] to-[#f8fafc] text-center text-slate-500">
-                        Premium muzarwa product visual
+                    <div class="flex aspect-square items-center justify-center bg-[#f8fafc] text-sm text-slate-500">
+                        No product image
                     </div>
                 @endif
             </div>
             <div>
-                <h1 class="mt-2 text-3xl font-bold">{{ $details->name }}</h1>
-                <p class="mt-4 text-slate-600">{{ $details->description ?: 'A muzarwa product, crafted for flavour.' }}</p>
-                <div class="mt-5 space-y-2 text-sm">
-                    <p><span class="font-medium">Price:</span> RWF {{ number_format((float) $details->price, 2) }}</p>
-                    <p><span class="font-medium">Barcode:</span> {{ $details->barcode }}</p>
-                    <p><span class="font-medium">Minimum online order:</span> <strong>{{ $minQty }}</strong> units</p>
+                <p class="text-sm leading-relaxed text-slate-600">{{ $details->description ?: 'A muzarwa product, crafted for flavour.' }}</p>
+                <div class="mt-6 space-y-2 text-sm text-slate-700">
+                    <p><span class="font-medium text-slate-900">Price:</span> RWF {{ number_format((float) $details->price, 2) }}</p>
+                    <p><span class="font-medium text-slate-900">Barcode:</span> {{ $details->barcode }}</p>
+                    <p><span class="font-medium text-slate-900">Minimum online order:</span> {{ $minQty }} units</p>
                 </div>
 
                 @if ($canAddToCart)
@@ -67,7 +82,7 @@
 
         {{-- Partner stores section --}}
         @if (isset($partners) && $partners->isNotEmpty())
-            <div id="partner-stores" class="mt-8 rounded-xl border border-slate-200 bg-white p-6">
+            <div id="partner-stores" class="mt-10 rounded-2xl border border-slate-200/90 bg-white p-6">
                 <h3 class="text-base font-semibold text-slate-900">Find us at partner supermarkets</h3>
                 <div class="mt-3 flex flex-wrap gap-2">
                     @foreach ($partners as $partner)
@@ -81,9 +96,9 @@
             </div>
         @endif
 
-        <div class="mt-10 grid gap-6 lg:grid-cols-2">
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <h2 class="text-xl font-semibold">Product Variants</h2>
+        <div class="mt-8 grid gap-4 lg:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200/90 bg-white p-6">
+                <h2 class="text-base font-semibold text-slate-900">Product variants</h2>
                 <div class="mt-3 space-y-2 text-sm text-slate-700">
                     @forelse ($variants as $variant)
                         <p>{{ $variant->name }} ({{ $variant->barcode }})</p>
@@ -92,8 +107,8 @@
                     @endforelse
                 </div>
             </div>
-            <div class="rounded-xl border border-slate-200 bg-white p-6">
-                <h2 class="text-xl font-semibold">Reviews & Ratings</h2>
+            <div class="rounded-2xl border border-slate-200/90 bg-white p-6">
+                <h2 class="text-base font-semibold text-slate-900">Reviews & ratings</h2>
                 <div class="mt-3 space-y-3 text-sm">
                     @forelse ($reviews as $review)
                         <article class="rounded-lg bg-slate-50 p-3">
