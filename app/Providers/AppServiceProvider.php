@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Services\SiteSettingsService;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -44,6 +46,14 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fix for older MySQL/MariaDB utf8mb4 index length limits.
         Schema::defaultStringLength(191);
+
+        // Without this an already signed-in user who opens the login page lands on the
+        // public storefront, which looks like a failed login. Send them to their own screen.
+        RedirectIfAuthenticated::redirectUsing(function (Request $request): string {
+            $user = $request->user();
+
+            return $user ? route($user->homeRoute()) : route('storefront.home');
+        });
 
         // Owner can do everything; inactive accounts can do nothing.
         Gate::before(function (User $user, string $ability) {

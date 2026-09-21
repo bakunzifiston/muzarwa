@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Support\UserSessions;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,11 @@ class LoginController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
+        // Logging out ends every session for this account, not just the current tab.
+        if ($user = $request->user()) {
+            UserSessions::flush($user);
+        }
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

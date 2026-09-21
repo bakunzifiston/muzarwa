@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Models\Employee;
 use App\Models\User;
 use App\Support\TablePageSize;
+use App\Support\UserSessions;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -77,7 +78,14 @@ class UserController extends Controller
                 ->withInput();
         }
 
+        $credentialsChanged = ! empty($data['password']) || $data['email'] !== $user->email;
+
         $user->update($data);
+
+        // New credentials must not leave old logins alive; keep the editor signed in.
+        if ($credentialsChanged) {
+            UserSessions::flush($user, $request->session()->getId());
+        }
 
         return redirect()
             ->route('admin.users.show', $user)
