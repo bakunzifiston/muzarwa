@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Ecommerce\Modules;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Support\PublicMedia;
 use App\Support\TablePageSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -62,8 +63,10 @@ class ProductImageManagementController extends Controller
         $imagePath = trim((string) $product->image_path);
 
         if ($imagePath !== '') {
+            PublicMedia::publish($imagePath);
+
             return [
-                'url' => asset('storage/'.ltrim($imagePath, '/')),
+                'url' => PublicMedia::url($imagePath),
                 'source' => "storage/{$imagePath}",
             ];
         }

@@ -30,7 +30,7 @@
     </div>
 
     <div>
-        <label for="barcode" class="mb-1 block text-sm font-medium text-slate-700">Barcode</label>
+        <label for="barcode" class="mb-1 block text-sm font-medium text-slate-700">Barcode <span class="font-normal text-slate-400">(optional)</span></label>
         <input
             id="barcode"
             name="barcode"
@@ -39,6 +39,7 @@
             maxlength="255"
             class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-600 focus:outline-none"
         >
+        <p class="mt-1 text-xs text-slate-500">Leave blank if this product has no barcode yet.</p>
         @error('barcode')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
     </div>
 
@@ -114,7 +115,7 @@
 
         @if (!empty($product?->image_path))
             <img
-                src="{{ asset('storage/' . $product->image_path) }}"
+                src="{{ $product->image_url }}"
                 alt="{{ $product->name }}"
                 class="mt-3 h-20 w-20 rounded-lg object-cover ring-1 ring-slate-200"
             >

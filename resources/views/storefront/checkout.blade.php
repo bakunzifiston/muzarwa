@@ -52,7 +52,7 @@
                                     <a href="{{ route('storefront.product', $product->id) }}" class="relative shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-slate-200">
                                         @if ($product->image_path)
                                             <img
-                                                src="{{ asset('storage/' . $product->image_path) }}"
+                                                src="{{ $product->image_url }}"
                                                 alt="{{ $product->name }}"
                                                 width="96"
                                                 height="96"

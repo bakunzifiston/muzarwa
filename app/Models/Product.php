@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Support\PublicMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +30,11 @@ class Product extends Model
             'compare_at_price' => 'decimal:2',
             'min_order_qty' => 'integer',
         ];
+    }
+
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::get(fn (): ?string => PublicMedia::url($this->image_path));
     }
 }
 

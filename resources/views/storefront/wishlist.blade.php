@@ -34,7 +34,7 @@
                 @foreach ($items as $product)
                     <article class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
                         @if ($product->image_path)
-                            <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="aspect-[4/3] w-full object-cover">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="aspect-[4/3] w-full object-cover">
                         @else
                             <div class="flex aspect-[4/3] w-full items-center justify-center bg-slate-100 text-sm text-slate-500">No image</div>
                         @endif

@@ -44,7 +44,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request): RedirectResponse
     {
-        $data = $request->safe()->except(['product_image']);
+        $data = $this->productPayload($request);
         if ($request->hasFile('product_image')) {
             $data['image_path'] = $request->file('product_image')->store('products', 'public');
         }
@@ -68,7 +68,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        $data = $request->safe()->except(['product_image']);
+        $data = $this->productPayload($request);
         if ($request->hasFile('product_image')) {
             if ($product->image_path) {
                 Storage::disk('public')->delete($product->image_path);
@@ -101,5 +101,21 @@ class ProductController extends Controller
         return redirect()
             ->route('admin.products.index')
             ->with('status', 'Product deleted successfully.');
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function productPayload(StoreProductRequest|UpdateProductRequest $request): array
+    {
+        $data = $request->safe()->except(['product_image']);
+
+        foreach (['barcode', 'description', 'compare_at_price'] as $field) {
+            if (! array_key_exists($field, $data) || $data[$field] === '') {
+                $data[$field] = null;
+            }
+        }
+
+        return $data;
     }
 }

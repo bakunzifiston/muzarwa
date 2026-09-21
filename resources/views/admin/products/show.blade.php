@@ -23,7 +23,7 @@
             @if ($product->image_path)
                 <div class="mb-6">
                     <p class="text-sm text-slate-500">Product Image</p>
-                    <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="mt-2 h-24 w-24 rounded-lg object-cover ring-1 ring-slate-200">
+                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="mt-2 h-24 w-24 rounded-lg object-cover ring-1 ring-slate-200">
                 </div>
             @endif
 

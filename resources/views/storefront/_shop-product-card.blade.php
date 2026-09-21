@@ -17,7 +17,7 @@
         <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
             @if ($product->image_path)
                 <img
-                    src="{{ asset('storage/' . $product->image_path) }}"
+                    src="{{ $product->image_url }}"
                     alt="{{ $product->name }}"
                     width="600"
                     height="750"
@@ -96,7 +96,7 @@
         <div class="relative h-56 shrink-0 overflow-hidden bg-slate-100 md:h-auto md:w-56 lg:w-64">
             @if ($product->image_path)
                 <img
-                    src="{{ asset('storage/' . $product->image_path) }}"
+                    src="{{ $product->image_url }}"
                     alt="{{ $product->name }}"
                     width="400"
                     height="500"

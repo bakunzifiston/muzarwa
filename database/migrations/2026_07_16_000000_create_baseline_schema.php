@@ -100,7 +100,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('type')->unique();
             $table->string('description')->nullable();
-            $table->string('barcode')->unique();
+            $table->string('barcode')->nullable()->unique();
             $table->decimal('price', 10, 2)->default(0);
             $table->decimal('compare_at_price', 10, 2)->nullable();
             $table->unsignedInteger('min_order_qty')->default(5);

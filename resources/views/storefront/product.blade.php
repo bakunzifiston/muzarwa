@@ -29,7 +29,7 @@
         <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
             <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
                 @if ($details->image_path)
-                    <img src="{{ asset('storage/' . $details->image_path) }}" alt="{{ $details->name }}" class="aspect-square w-full object-cover">
+                    <img src="{{ $details->image_url }}" alt="{{ $details->name }}" class="aspect-square w-full object-cover">
                 @else
                     <div class="flex aspect-square items-center justify-center bg-[#f8fafc] text-sm text-slate-500">
                         No product image

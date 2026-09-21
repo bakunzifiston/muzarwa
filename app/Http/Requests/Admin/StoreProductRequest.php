@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProductRequest extends FormRequest
 {
@@ -11,12 +12,19 @@ class StoreProductRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        if (is_string($this->barcode) && trim($this->barcode) === '') {
+            $this->merge(['barcode' => null]);
+        }
+    }
+
     public function rules(): array
     {
         return [
             'type' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-            'barcode' => ['nullable', 'string', 'max:255'],
+            'barcode' => ['nullable', 'string', 'max:255', Rule::unique('products', 'barcode')],
             'price' => ['required', 'numeric', 'min:0'],
             'compare_at_price' => ['nullable', 'numeric', 'min:0', function (string $attribute, mixed $value, \Closure $fail): void {
                 if ($value === null || $value === '') {
