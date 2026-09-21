@@ -64,38 +64,9 @@
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Product highlights</h2>
                     <p class="mt-3 text-sm leading-relaxed text-slate-600">A Rwandan food brand built around chilli, fruit, and community.</p>
                 </div>
-                <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
-                    @forelse ($highlights as $index => $product)
-                        @php
-                            $tones = [
-                                ['ring' => 'border-[#2A5C38]/15 ring-[#2A5C38]/10', 'label' => 'text-[#BD4B2D]'],
-                                ['ring' => 'border-[#CA9636]/30 ring-[#CA9636]/20', 'label' => 'text-[#CA9636]'],
-                                ['ring' => 'border-[#2A5C38]/15 ring-[#2A5C38]/10', 'label' => 'text-[#2A5C38]'],
-                            ];
-                            $tone = $tones[$index % 3];
-                        @endphp
-                        <a href="{{ route('storefront.product', $product) }}" class="group overflow-hidden rounded-2xl border bg-white shadow-sm ring-1 transition hover:-translate-y-0.5 hover:shadow-md {{ $tone['ring'] }}">
-                            <div class="aspect-square overflow-hidden bg-slate-100">
-                                @if ($product->image_url)
-                                    <img
-                                        src="{{ $product->image_url }}"
-                                        alt="{{ $product->name }}"
-                                        width="600"
-                                        height="600"
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="h-full w-full object-cover object-center transition duration-300 group-hover:scale-[1.03]"
-                                    >
-                                @else
-                                    <div class="flex h-full w-full items-center justify-center text-sm text-slate-500">No image</div>
-                                @endif
-                            </div>
-                            <div class="p-6">
-                                <p class="text-xs font-semibold uppercase tracking-[0.14em] {{ $tone['label'] }}">{{ $product->type }}</p>
-                                <h3 class="mt-3 text-xl font-bold text-slate-900">{{ $product->name }}</h3>
-                                <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{{ $product->description ?: 'A muzarwa product, crafted for flavour.' }}</p>
-                            </div>
-                        </a>
+                <div class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3" data-stagger>
+                    @forelse ($highlights as $product)
+                        @include('storefront._shop-product-card', ['layout' => 'grid', 'bestSellerIds' => $bestSellerIds])
                     @empty
                         <div class="col-span-full rounded-2xl border border-dashed border-slate-300 bg-white/80 px-6 py-12 text-center text-sm text-slate-600">
                             Products added in admin will appear here.

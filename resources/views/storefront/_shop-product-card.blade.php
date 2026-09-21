@@ -14,7 +14,7 @@
 
 @if ($layout === 'grid')
     <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white">
-        <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+        <div class="relative aspect-square overflow-hidden bg-slate-100">
             @if ($product->image_path)
                 <img
                     src="{{ $product->image_url }}"
@@ -23,7 +23,7 @@
                     height="750"
                     loading="lazy"
                     decoding="async"
-                    class="h-full w-full object-cover"
+                    class="h-full w-full object-cover object-bottom"
                 >
             @else
                 <div class="flex h-full w-full items-center justify-center text-sm text-slate-500">No image</div>
