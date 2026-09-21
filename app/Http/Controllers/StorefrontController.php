@@ -30,10 +30,10 @@ class StorefrontController extends Controller
 {
     public function home(): View
     {
+        // Same catalog and default ordering as the shop page, trimmed to three cards.
         $highlights = $this->catalogQuery()
-            ->orderByDesc('products.created_at')
-            ->orderBy('products.name')
-            ->limit(9)
+            ->orderBy('products.name', 'asc')
+            ->limit(3)
             ->get();
         $bestSellers = $this->bestSellerProducts(6);
         $bestSellerIds = $bestSellers->pluck('id')->all();

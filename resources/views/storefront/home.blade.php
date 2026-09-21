@@ -102,15 +102,17 @@
                         </div>
                     @endforelse
                 </div>
-                <div class="mt-12" data-animate>
-                    <p class="text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Quick product links</p>
-                    <div class="mt-5 flex flex-wrap justify-center gap-3">
-                        @foreach ($highlights as $product)
-                            <a href="{{ route('storefront.product', $product) }}" class="rounded-full bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1F4A2C]">{{ $product->name }}</a>
-                        @endforeach
-                        <a href="{{ route('storefront.shop') }}" class="rounded-full bg-[#CA9636] px-5 py-2.5 text-sm font-semibold text-[#3E3C38] hover:bg-[#B07F28]">Shop catalog</a>
-                        <a href="{{ route('storefront.contact') }}" class="rounded-full border border-[#2A5C38]/30 bg-white px-5 py-2.5 text-sm font-semibold text-[#2A5C38] hover:bg-[#E8F0EA]">Contact Us</a>
-                    </div>
+                <div class="mt-12 flex flex-col items-center gap-3" data-animate>
+                    <a
+                        href="{{ route('storefront.shop') }}"
+                        class="inline-flex items-center gap-2 rounded-lg bg-[#2A5C38] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1F4A2C] hover:shadow-md active:scale-[0.98]"
+                    >
+                        Visit the shop for more products
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12" />
+                        </svg>
+                    </a>
+                    <p class="text-xs text-slate-500">Browse the full catalog, filter by category, and order online.</p>
                 </div>
             </div>
         </section>
