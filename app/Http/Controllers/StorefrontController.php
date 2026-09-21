@@ -30,6 +30,11 @@ class StorefrontController extends Controller
 {
     public function home(): View
     {
+        $highlights = $this->catalogQuery()
+            ->orderByDesc('products.created_at')
+            ->orderBy('products.name')
+            ->limit(9)
+            ->get();
         $bestSellers = $this->bestSellerProducts(6);
         $bestSellerIds = $bestSellers->pluck('id')->all();
         $partners = Partner::query()
@@ -39,7 +44,7 @@ class StorefrontController extends Controller
             ->get();
         $galleryAlbums = $this->homeGalleryAlbums();
 
-        return view('storefront.home', compact('bestSellers', 'bestSellerIds', 'partners', 'galleryAlbums'));
+        return view('storefront.home', compact('highlights', 'bestSellers', 'bestSellerIds', 'partners', 'galleryAlbums'));
     }
 
     public function about(): View

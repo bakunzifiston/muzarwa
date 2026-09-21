@@ -64,38 +64,51 @@
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Product highlights</h2>
                     <p class="mt-3 text-sm leading-relaxed text-slate-600">A Rwandan food brand built around chilli, fruit, and community.</p>
                 </div>
-                <div class="mt-12 grid gap-6 md:grid-cols-3" data-stagger>
-                    <a href="{{ route('storefront.products') }}#akanovela-chilli-sauce" class="group overflow-hidden rounded-2xl border border-[#2A5C38]/15 bg-white shadow-sm ring-1 ring-[#2A5C38]/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <x-storefront.product-shot src="images/storefront/akanovela-chilli-sauce.jpg" alt="Akanovela Chilli Sauce" :cover="true" class="aspect-square" />
-                        <div class="p-6">
-                            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#BD4B2D]">Heat</p>
-                            <h3 class="mt-3 text-xl font-bold text-slate-900">Akanovela Chilli Sauce</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-slate-600">Bold flavour, balanced heat, and versatile everyday use.</p>
+                <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
+                    @forelse ($highlights as $index => $product)
+                        @php
+                            $tones = [
+                                ['ring' => 'border-[#2A5C38]/15 ring-[#2A5C38]/10', 'label' => 'text-[#BD4B2D]'],
+                                ['ring' => 'border-[#CA9636]/30 ring-[#CA9636]/20', 'label' => 'text-[#CA9636]'],
+                                ['ring' => 'border-[#2A5C38]/15 ring-[#2A5C38]/10', 'label' => 'text-[#2A5C38]'],
+                            ];
+                            $tone = $tones[$index % 3];
+                        @endphp
+                        <a href="{{ route('storefront.product', $product) }}" class="group overflow-hidden rounded-2xl border bg-white shadow-sm ring-1 transition hover:-translate-y-0.5 hover:shadow-md {{ $tone['ring'] }}">
+                            <div class="aspect-square overflow-hidden bg-slate-100">
+                                @if ($product->image_url)
+                                    <img
+                                        src="{{ $product->image_url }}"
+                                        alt="{{ $product->name }}"
+                                        width="600"
+                                        height="600"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="h-full w-full object-cover object-center transition duration-300 group-hover:scale-[1.03]"
+                                    >
+                                @else
+                                    <div class="flex h-full w-full items-center justify-center text-sm text-slate-500">No image</div>
+                                @endif
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs font-semibold uppercase tracking-[0.14em] {{ $tone['label'] }}">{{ $product->type }}</p>
+                                <h3 class="mt-3 text-xl font-bold text-slate-900">{{ $product->name }}</h3>
+                                <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{{ $product->description ?: 'A muzarwa product, crafted for flavour.' }}</p>
+                            </div>
+                        </a>
+                    @empty
+                        <div class="col-span-full rounded-2xl border border-dashed border-slate-300 bg-white/80 px-6 py-12 text-center text-sm text-slate-600">
+                            Products added in admin will appear here.
                         </div>
-                    </a>
-                    <a href="{{ route('storefront.products') }}#akanovela-chilli-oil" class="group overflow-hidden rounded-2xl border border-[#CA9636]/30 bg-white shadow-sm ring-1 ring-[#CA9636]/20 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <x-storefront.product-shot src="images/storefront/akanovela-chilli-oil.jpg" alt="Akanovela Chilli Oil" :cover="true" class="aspect-square" />
-                        <div class="p-6">
-                            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#CA9636]">Oil</p>
-                            <h3 class="mt-3 text-xl font-bold text-slate-900">Akanovela Chilli Oil</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-slate-600">Aromatic heat for pizza, pasta, grilled meat, and finishing dishes.</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('storefront.products') }}#passion-fruit-juice" class="group overflow-hidden rounded-2xl border border-[#2A5C38]/15 bg-white shadow-sm ring-1 ring-[#2A5C38]/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <x-storefront.product-shot src="images/storefront/itunda-squash.jpg" alt="Itunda passion fruit squash" :cover="true" class="aspect-square" />
-                        <div class="p-6">
-                            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#2A5C38]">Refresh</p>
-                            <h3 class="mt-3 text-xl font-bold text-slate-900">Itunda Passion Fruit</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-slate-600">Refreshing fruit flavour made from carefully selected passion fruit.</p>
-                        </div>
-                    </a>
+                    @endforelse
                 </div>
                 <div class="mt-12" data-animate>
                     <p class="text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Quick product links</p>
                     <div class="mt-5 flex flex-wrap justify-center gap-3">
-                        <a href="{{ route('storefront.products') }}#akanovela-chilli-sauce" class="rounded-full bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1F4A2C]">Akanovela Chilli Sauce</a>
-                        <a href="{{ route('storefront.products') }}#akanovela-chilli-oil" class="rounded-full bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1F4A2C]">Akanovela Chilli Oil</a>
-                        <a href="{{ route('storefront.products') }}#passion-fruit-juice" class="rounded-full bg-[#CA9636] px-5 py-2.5 text-sm font-semibold text-[#3E3C38] hover:bg-[#B07F28]">Passion Fruit Juice</a>
+                        @foreach ($highlights as $product)
+                            <a href="{{ route('storefront.product', $product) }}" class="rounded-full bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1F4A2C]">{{ $product->name }}</a>
+                        @endforeach
+                        <a href="{{ route('storefront.shop') }}" class="rounded-full bg-[#CA9636] px-5 py-2.5 text-sm font-semibold text-[#3E3C38] hover:bg-[#B07F28]">Shop catalog</a>
                         <a href="{{ route('storefront.contact') }}" class="rounded-full border border-[#2A5C38]/30 bg-white px-5 py-2.5 text-sm font-semibold text-[#2A5C38] hover:bg-[#E8F0EA]">Contact Us</a>
                     </div>
                 </div>
