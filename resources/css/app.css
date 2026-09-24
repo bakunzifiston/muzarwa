@@ -69,4 +69,29 @@
         transform: none !important;
         animation: none !important;
     }
+
+    .mz-hero-float-a,
+    .mz-hero-float-b {
+        animation: none !important;
+    }
+}
+
+.mz-hero-float-a {
+    animation: mz-hero-float-a 7s ease-in-out infinite;
+    will-change: transform;
+}
+
+.mz-hero-float-b {
+    animation: mz-hero-float-b 8.5s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes mz-hero-float-a {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(-1.5deg); }
+    50% { transform: translate3d(-6px, -14px, 0) rotate(1deg); }
+}
+
+@keyframes mz-hero-float-b {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(2deg); }
+    50% { transform: translate3d(8px, -12px, 0) rotate(-1deg); }
 }

@@ -1,4 +1,4 @@
-<x-layouts.storefront title="Our Story" seo-description="muzarwa began in Rwamagana with a vision to capture authentic Rwandan flavour in every bottle, and to partner with businesses, distributors, and farmers.">
+<x-layouts.storefront title="About Us" seo-description="muzarwa LTD was founded in Rwamagana, Rwanda, with a vision to create food products that celebrate the country's rich agricultural resources and distinctive flavours.">
     <div id="storefront-about">
         <section class="relative overflow-hidden border-b border-[#1F4A2C]/30 bg-[#2A5C38] text-white">
             <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#CA9636]/15 blur-3xl" aria-hidden="true"></div>
@@ -10,13 +10,13 @@
                     <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
                         <li><a href="{{ route('storefront.home') }}" class="transition hover:text-white">Home</a></li>
                         <li class="text-white/50" aria-hidden="true">/</li>
-                        <li class="text-white/90" aria-current="page">About</li>
+                        <li class="text-white/90" aria-current="page">About Us</li>
                     </ol>
                 </nav>
-                <p class="mt-6 text-sm font-medium uppercase tracking-[0.2em] text-[#CA9636]">Rwamagana, Rwanda</p>
+                <p class="mt-6 text-sm font-medium uppercase tracking-[0.2em] text-[#CA9636]">About Us</p>
                 <h1 class="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Our Story</h1>
                 <p class="mt-4 max-w-2xl text-sm leading-relaxed text-slate-100/90 sm:text-base">
-                    muzarwa began in Rwamagana with a vision to capture the rich and authentic flavours of Rwanda in every bottle.
+                    muzarwa LTD was founded in Rwamagana, Rwanda, with a vision to create food products that celebrate the country's rich agricultural resources and distinctive flavours.
                 </p>
             </div>
         </section>
@@ -25,13 +25,19 @@
             <div class="mx-auto max-w-7xl px-4 py-14 lg:px-8 lg:py-20">
                 <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                     <div data-animate="left">
-                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Who we are</p>
-                        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Crafted in Rwanda, made with care</h2>
+                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">About Us</p>
+                        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Our Story</h2>
                         <p class="mt-5 text-sm leading-relaxed text-slate-600 sm:text-base">
-                            What started with a passion for great taste has grown into a brand focused on quality, local ingredients, and meaningful partnerships with farmers.
+                            muzarwa LTD was founded in Rwamagana, Rwanda, with a vision to create food products that celebrate the country's rich agricultural resources and distinctive flavours.
                         </p>
                         <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-                            Through collaboration with local producers, muzarwa creates chilli sauces, infused oils, and fruit-based products designed to bring authentic Rwandan flavour to homes, restaurants, and markets.
+                            What started with a passion for quality chilli products has grown into a food brand focused on creating memorable flavours from locally sourced ingredients.
+                        </p>
+                        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            Through our products, partnerships, and relationships with farmers, we aim to build a business that creates value from farm to consumer.
+                        </p>
+                        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            Today, our portfolio includes the Akanovela chilli range and refreshing passion fruit products, with ambitions to continue developing innovative food products for Rwanda and beyond.
                         </p>
                     </div>
                     <figure class="overflow-hidden rounded-2xl bg-[#c0c6d4] ring-1 ring-black/5" data-animate="right">
@@ -53,15 +59,15 @@
             <div class="mx-auto max-w-7xl px-4 py-14 lg:px-8 lg:py-20">
                 <div class="grid overflow-hidden rounded-2xl border border-slate-200/90 bg-white md:grid-cols-2" data-stagger>
                     <article class="border-b border-slate-200/90 p-8 md:border-b-0 md:border-r md:p-10">
-                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Vision</p>
+                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Our Vision</p>
                         <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-                            To become a trusted East African brand for bold, natural chilli products and refreshing fruit-based products, while promoting local value creation and farmer empowerment.
+                            To build one of East Africa's trusted food brands, known for authentic flavour, quality products, and meaningful local impact.
                         </p>
                     </article>
                     <article class="p-8 md:p-10">
-                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#CA9636]">Mission</p>
+                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#CA9636]">Our Mission</p>
                         <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-                            To create high-quality, delicious food products using locally sourced ingredients while supporting Rwandan farmers and delivering an exceptional customer experience.
+                            To create high-quality food and beverage products using locally sourced ingredients while creating value for farmers, customers, partners, and communities.
                         </p>
                     </article>
                 </div>

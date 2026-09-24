@@ -13,17 +13,14 @@
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#163824]/40 via-transparent to-[#1F4A2C]/50" aria-hidden="true"></div>
             <x-storefront.banner-spice />
 
-            <div class="relative mx-auto flex min-h-[min(72vh,36rem)] max-w-7xl flex-col justify-center px-4 py-20 sm:py-24 lg:px-8 lg:py-28">
-                <div class="js-hero-animate max-w-3xl">
+            <div class="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-8 pt-14 sm:gap-10 sm:pb-10 sm:pt-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:pb-12 lg:pt-20">
+                <div class="js-hero-animate max-w-xl">
                     <p class="text-sm font-medium uppercase tracking-[0.2em] text-[#CA9636]">Rwamagana, Rwanda</p>
                     <h1 class="mt-4 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.25rem]">
                         Taste the Passion. Fuel Your Flavour.
                     </h1>
-                    <p class="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
-                        Welcome to <span class="font-semibold">muzarwa</span>, where bold Rwandan flavour meets craftsmanship. From the fiery bite of our signature <strong>Akanovela Chilli Sauce</strong> to the refreshing taste of <strong>natural passion fruit juice</strong>, every product is rooted in quality and community.
-                    </p>
-                    <p class="mt-3 text-sm font-medium tracking-wide text-white/80 sm:text-base">
-                        Locally grown. Carefully crafted. Full of flavour.
+                    <p class="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">
+                        Discover bold, authentic flavours crafted in Rwanda. From our signature Akanovela chilli products to refreshing passion fruit juice, <span class="font-semibold">muzarwa ltd</span> brings together locally sourced ingredients, quality craftsmanship, and the rich taste of Rwanda.
                     </p>
                     <div class="mt-8 flex flex-wrap gap-3">
                         <a
@@ -52,9 +49,131 @@
                         @endguest
                     </div>
                 </div>
+
+                <div class="js-hero-animate relative mx-auto w-full max-w-md lg:max-w-none" style="animation-delay: 120ms;">
+                    <div class="pointer-events-none absolute -inset-4 rounded-full bg-[#CA9636]/15 blur-3xl" aria-hidden="true"></div>
+                    <div class="relative mx-auto aspect-[5/4] w-full max-w-[24rem] lg:ml-auto lg:mr-0 lg:max-w-none">
+                        <div class="mz-hero-float-a absolute left-[4%] top-[2%] z-10 w-[56%] overflow-hidden rounded-3xl bg-[#ede7dc] shadow-[0_18px_40px_rgba(0,0,0,0.35),0_40px_80px_-20px_rgba(0,0,0,0.55)] ring-1 ring-black/10">
+                            <img
+                                src="{{ asset('images/storefront/akanovela-chilli-sauce.jpg') }}"
+                                alt="Akanovela Chilli Sauce"
+                                width="480"
+                                height="600"
+                                class="aspect-[4/5] w-full object-cover object-bottom brightness-[0.88] contrast-[1.05]"
+                            >
+                        </div>
+                        <div class="mz-hero-float-b absolute right-[2%] top-[8%] z-20 w-[52%] overflow-hidden rounded-3xl bg-[#ede7dc] shadow-[0_22px_48px_rgba(0,0,0,0.4),0_48px_90px_-18px_rgba(0,0,0,0.6)] ring-1 ring-black/10">
+                            <img
+                                src="{{ asset('images/storefront/akanovela-chilli-oil.jpg') }}"
+                                alt="Akanovela Chilli Oil"
+                                width="400"
+                                height="500"
+                                class="aspect-[4/5] w-full object-cover object-bottom brightness-[0.88] contrast-[1.05]"
+                            >
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        {{-- Mission & Vision --}}
+        <section class="border-b border-[#2A5C38]/10 bg-[#f8fafc]">
+            <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
+                <div class="mx-auto max-w-2xl text-center" data-animate>
+                    <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">What drives us</p>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Mission &amp; Vision</h2>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-600">
+                        Locally grown. Carefully crafted. Built to share authentic Rwandan flavour.
+                    </p>
+                </div>
+
+                <div class="mt-12 grid gap-6 md:grid-cols-2" data-stagger>
+                    <article class="rounded-2xl border border-[#2A5C38]/15 bg-gradient-to-br from-[#E8F0EA] to-white p-8 shadow-sm ring-1 ring-[#2A5C38]/10 sm:p-10">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#2A5C38] text-white shadow-md shadow-[#2A5C38]/20">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">Our Mission</p>
+                                <h3 class="mt-1 text-xl font-bold tracking-tight text-slate-900">Why we make what we make</h3>
+                            </div>
+                        </div>
+                        <p class="mt-5 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            To create high-quality food and beverage products using locally sourced ingredients while creating value for farmers, customers, partners, and communities.
+                        </p>
+                    </article>
+
+                    <article class="rounded-2xl border border-[#CA9636]/30 bg-gradient-to-br from-[#FBF6EA] to-white p-8 shadow-sm ring-1 ring-[#CA9636]/20 sm:p-10">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#CA9636] text-[#3E3C38] shadow-md shadow-[#CA9636]/25">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#CA9636]">Our Vision</p>
+                                <h3 class="mt-1 text-xl font-bold tracking-tight text-slate-900">Where we are headed</h3>
+                            </div>
+                        </div>
+                        <p class="mt-5 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            To build one of East Africa's trusted food brands, known for authentic flavour, quality products, and meaningful local impact.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        {{-- Who we are --}}
+        <section class="border-b border-[#2A5C38]/10 bg-white">
+            <div class="mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
+                <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                    <div data-animate="left">
+                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#2A5C38]">About Us</p>
+                        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">Our Story</h2>
+                        <p class="mt-5 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            muzarwa LTD was founded in Rwamagana, Rwanda, with a vision to create food products that celebrate the country's rich agricultural resources and distinctive flavours.
+                        </p>
+                        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            What started with a passion for quality chilli products has grown into a food brand focused on creating memorable flavours from locally sourced ingredients.
+                        </p>
+                        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            Through our products, partnerships, and relationships with farmers, we aim to build a business that creates value from farm to consumer.
+                        </p>
+                        <p class="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                            Today, our portfolio includes the Akanovela chilli range and refreshing passion fruit products, with ambitions to continue developing innovative food products for Rwanda and beyond.
+                        </p>
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <a
+                                href="{{ route('storefront.about') }}"
+                                class="inline-flex items-center rounded-lg bg-[#2A5C38] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1F4A2C] active:scale-[0.98]"
+                            >
+                                Our story
+                            </a>
+                            <a
+                                href="{{ route('storefront.contact') }}"
+                                class="inline-flex items-center rounded-lg border border-slate-300/90 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-[#2A5C38]/35 hover:bg-[#f7fbfc] active:scale-[0.98]"
+                            >
+                                Get in touch
+                            </a>
+                        </div>
+                    </div>
+                    <figure class="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-[#e8eaee] shadow-xl shadow-slate-900/10 ring-1 ring-black/5 lg:mx-0 lg:justify-self-end" data-animate="right">
+                        <img
+                            src="{{ asset('images/storefront/who-we-are.jpg') }}"
+                            alt="Akanovela muzarwa chilli sauce"
+                            width="677"
+                            height="903"
+                            loading="lazy"
+                            decoding="async"
+                            class="aspect-[4/5] w-full object-cover object-bottom"
+                        >
+                    </figure>
+                </div>
+            </div>
+        </section>
 
         {{-- Product highlights --}}
         <section class="border-b border-[#2A5C38]/10 bg-gradient-to-b from-[#E8F0EA] via-[#EEF3EC] to-[#F4F1EA]">
